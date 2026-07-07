@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senden Çok Ama Çok Özür Dilerim... 🤍</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #070b19;
+            --bg-light: #0f172a;
+            --blue-glow: rgba(0, 180, 216, 0.15);
+            --blue-bright: #90e0ef;
+            --text-white: #f8f9fa;
+            --text-gray: #cbd5e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+            color: var(--text-white);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* Arka Plandaki Profesyonel Işık Süzmesi */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(30, 58, 138, 0.3) 0%, transparent 50%);
+            animation: rotateGlow 20s linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Giriş Ekranı (Premium Neon Sürüm) */
+        .hero {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: radial-gradient(circle at center, rgba(15, 23, 42, 0.8) 0%, var(--bg-dark) 80%);
+            z-index: 10;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
+        }
+
+        .hero.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            color: #ffffff;
+            margin-bottom: 25px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 40px rgba(0, 180, 216, 0.2);
+            animation: floatAnimation 4s ease-in-out infinite;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 650px;
+            line-height: 1.8;
+            color: var(--text-gray);
+            font-weight: 300;
+            margin-bottom: 45px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Premium Buton Tasarımı */
+        .open-btn {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.08) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            padding: 18px 45px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255,255,255,0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .open-btn:hover {
+            border-color: var(--blue-bright);
+            box-shadow: 0 0 35px rgba(144, 224, 239, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
+            transform: translateY(-3px);
+        }
+
+        /* Mektup Ekranı */
+        .main-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            z-index: 5;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.2s ease 0.2s, visibility 1.2s ease 0.2s;
+            overflow-y: auto;
+        }
+
+        .main-content.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .letter-container {
+            width: 100%;
+            max-width: 850px;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(144, 224, 239, 0.15);
+            border-radius: 28px;
+            padding: 60px 50px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+            backdrop-filter: blur(25px);
+            margin: auto;
+        }
+
+        .letter-title {
+            font-size: 2rem;
+            font-family: 'Dancing Script', cursive;
+            color: var(--blue-bright);
+            margin-bottom: 35px;
+            border-bottom: 1px solid rgba(144, 224, 239, 0.1);
+            padding-bottom: 20px;
+            text-shadow: 0 0 15px rgba(144, 224, 239, 0.3);
+        }
+
+        .typewriter-text {
+            font-family: 'Courier Prime', monospace;
+            line-height: 2.3;
+            font-size: 1.15rem;
+            color: #e2e8f0;
+            white-space: pre-wrap;
+            text-align: justify;
+        }
+
+        .typewriter-text::after {
+            content: '█';
+            color: var(--blue-bright);
+            animation: blink 0.8s infinite;
+            margin-left: 3px;
+        }
+        
+        .typewriter-text.finished::after {
+            display: none;
+        }
+
+        .signature-area {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            text-align: right;
+            color: var(--blue-bright);
+            margin-top: 45px;
+            opacity: 0;
+            transition: opacity 2s ease;
+            text-shadow: 0 0 15px rgba(144, 224, 239, 0.4);
+        }
+
+        .signature-area.show {
+            opacity: 1;
+        }
+
+        /* Gelişmiş Kalp Yağmuru */
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 2;
+            filter: drop-shadow(0 0 6px rgba(255,255,255,0.2));
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.8rem; }
+            .letter-container { padding: 40px 24px; }
+            .typewriter-text { font-size: 1.05rem; line-height: 2.1; }
+            .open-btn { padding: 15px 35px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero" id="hero-screen">
+        <h1>Senden çok ama çok özür dilerim 🤍</h1>
+        <p>Seni incitmek, bu hayatta isteyeceğim en son şey bile olamazdı... Kırdığım o güzel kalbini yeniden kazanabilmek ve kendimi anlatabilmek için sana küçük bir alan hazırladım.</p>
+        <button class="open-btn" onclick="openLetter()">
+            <i class="fas fa-envelope-open-text"></i> MEKTUBU AÇ
+        </button>
+    </section>
+
+    <div class="main-content" id="letter-screen">
+        <div class="letter-container">
+            <div class="letter-title">Minik yıldızım...</div>
+            <div id="typewriter" class="typewriter-text"></div>
+            <div id="signature" class="signature-area">Yakışıklı Prensin...</div>
+        </div>
+    </div>
+
+    <script>
+        const heartColors = ['💙', '🤍', '🩵'];
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const randomColor = heartColors[Math.floor(Math.random() * heartColors.length)];
+            heart.innerHTML = randomColor;
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.4;
+            heart.style.fontSize = Math.random() * 14 + 12 + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 250);
+
+        function openLetter() {
+            document.getElementById('hero-screen').classList.add('hidden');
+            document.getElementById('letter-screen').classList.add('show');
+            setTimeout(startTypewriter, 1000);
+        }
+
+        // GELİŞTİRİLMİŞ VE UZATILMIŞ ÖZÜR METNİ
+        const fullText = `Güzelim, senden gerçekten tüm kalbimle özür dilerim.\n\nBiliyorum, o an öyle davranmamalıydım ve seni üzecek bir tavır sergilememeliydim. Ama ne yapabilirim, inan bana içimdeki tek duygu sana bir şey olması korkusu... Hayatımdaki en değerli varlığım sensin ve tek isteğim senin her an güvende, mutlu ve iyi olman. Koruma içgüdüm bazen doğru ifade edemediğim kelimelere dönüşebiliyor, lütfen beni anla.\n\nŞu an iyi olduğunu bilmek içimi biraz olsun rahatlatsa da, yinede o güzel yüzünü asmana sebep olduğum için içim hiç rahat değil. Seni her şeyden çok seviyorum ve yüzündeki o eşsiz gülümsemeyi tekrar görebilmek için bu küçük sürprizi hazırladım, umarım seni biraz olsun gülümsetmeyi başarabilirim.\n\nBu arada, bahsettiğin o meyve sularından içmende hiçbir sorun yok tabii ki, artık tamamen izin veriyorum :) Hatta bana da bir iyilik yap ve aralarından hangisini en çok beğendiğini, hangisini tavsiye edeceğini söyle olur mu? Çünkü senin o güzel zevkine güveniyorum ve ben de en kısa zamanda o lezzetli içeceklerden birini senin tavsiyenle denemek istiyorum.`;
+
+        let index = 0;
+        const speed = 40; // Biraz daha akıcı olması için hızı çok az artırdım (40ms)
+        const typewriterElement = document.getElementById('typewriter');
+        const signatureElement = document.getElementById('signature');
+        let hasStarted = false;
+
+        function startTypewriter() {
+            if (hasStarted) return;
+            hasStarted = true;
+            type();
+        }
+
+        function type() {
+            if (index < fullText.length) {
+                typewriterElement.textContent += fullText.charAt(index);
+                index++;
+                setTimeout(type, speed);
+            } else {
+                typewriterElement.classList.add('finished');
+                signatureElement.classList.add('show');
+            }
+        }
+    </script>
+</body>
+</html>
